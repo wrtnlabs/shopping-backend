@@ -44,7 +44,9 @@ export class ShoppingBackend {
     });
 
     // DO OPEN
-    this.application_.enableCors();
+    this.application_.enableCors({
+      methods: ["GET", "POST", "PATCH", "PUT", "DELETE", "OPTIONS", "HEAD"],
+    });
     await this.application_.listen(ShoppingConfiguration.API_PORT(), "0.0.0.0");
   }
 
