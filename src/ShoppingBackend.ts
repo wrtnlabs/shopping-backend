@@ -1,10 +1,10 @@
+import { NestiaEditorModule } from "@nestia/editor/lib/NestiaEditorModule";
 import { NestiaSwaggerComposer } from "@nestia/sdk";
 import { NestFactory } from "@nestjs/core";
 import {
   FastifyAdapter,
   NestFastifyApplication,
 } from "@nestjs/platform-fastify";
-import { NestiaEditorModule } from "@nestia/editor/lib/NestiaEditorModule";
 
 import { ShoppingConfiguration } from "./ShoppingConfiguration";
 import { ShoppingModule } from "./ShoppingModule";
@@ -17,7 +17,7 @@ export class ShoppingBackend {
     this.application_ = await NestFactory.create(
       ShoppingModule,
       new FastifyAdapter(),
-      { logger: false }
+      { logger: false },
     );
 
     // THE SWAGGER EDITOR
@@ -44,9 +44,7 @@ export class ShoppingBackend {
     });
 
     // DO OPEN
-    this.application_.enableCors({
-      methods: ["GET", "POST", "PATCH", "PUT", "DELETE", "HEAD", "OPTIONS"],
-    });
+    this.application_.enableCors();
     await this.application_.listen(ShoppingConfiguration.API_PORT(), "0.0.0.0");
   }
 
